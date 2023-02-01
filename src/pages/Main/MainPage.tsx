@@ -11,6 +11,13 @@ const MainPage = () => {
 export default MainPage
 const MainPageLayout = styled.div`
 
+  height: 100%;
+  width: 100vw;
 
+  flex: 1 1 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
 `

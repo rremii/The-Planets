@@ -9,11 +9,9 @@ interface props {
 }
 
 export const Nav: FC<props> = ({ href, color }) => {
-
   const location = useLocation()
 
   const pathname = location.pathname.slice(1)
-  
   return <NavLayout isActive={pathname === href} color={color} to={href}>
     <span>{href}</span>
   </NavLayout>

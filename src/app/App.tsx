@@ -24,9 +24,10 @@ export default withProviders(App)
 
 const Layout = styled.div`
   width: 100vw;
-  min-height: 100vh;
+  height: 100vh;
   background-color: hsl(240, 67%, 8%);
-
+  display: flex;
+  flex-direction: column;
   position: relative;
 
   &::after {
@@ -35,8 +36,8 @@ const Layout = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    width: 2px;
-    height: 2px;
+    width: 1.5px;
+    height: 1.5px;
   }
 `
 
