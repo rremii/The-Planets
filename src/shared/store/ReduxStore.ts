@@ -19,3 +19,6 @@ export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
 export type RootState = ReturnType<typeof rootReducer>
 
 
+export const store = setupStore()
+
+

@@ -8,8 +8,25 @@ import Jupiter from "./../../../shared/assets/planet-jupiter.svg"
 import Saturn from "./../../../shared/assets/planet-saturn.svg"
 import Uranus from "./../../../shared/assets/planet-uranus.svg"
 import Neptune from "./../../../shared/assets/planet-neptune.svg"
+import { useTypedSelector } from "../../../shared/Hooks/store-hooks"
+
+
+const planets = [
+  { src: Mercury, name: "mercury" },
+  { src: Venus, name: "venus" },
+  { src: Earth, name: "earth" },
+  { src: Mars, name: "mars" },
+  { src: Jupiter, name: "jupiter" },
+  { src: Saturn, name: "saturn" },
+  { src: Uranus, name: "uranus" },
+  { src: Neptune, name: "neptune" }
+]
 
 export const SolarSystem = () => {
+
+
+  const pointedPlanet = useTypedSelector(state => state.Nav.pointedPlanet)
+
 
   return <SolarSystemLayout>
     <div className="container">
@@ -18,28 +35,28 @@ export const SolarSystem = () => {
         <img src={Sun} alt="Sun" />
       </div>
       <Belt />
-      <MercuryPlanet className="planet-orbit">
+      <MercuryPlanet isActive={pointedPlanet === "mercury"} className={` planet-orbit`}>
         <img src={Mercury} alt="Mercury" />
       </MercuryPlanet>
-      <VenusPlanet className="planet-orbit">
+      <VenusPlanet isActive={pointedPlanet === "venus"} className={` planet-orbit`}>
         <img src={Venus} alt="Venus" />
       </VenusPlanet>
-      <EarthPlanet className="planet-orbit">
+      <EarthPlanet isActive={pointedPlanet === "earth"} className={` planet-orbit`}>
         <img src={Earth} alt="Earth" />
       </EarthPlanet>
-      <MarsPlanet className="planet-orbit">
+      <MarsPlanet isActive={pointedPlanet === "mars"} className={` planet-orbit`}>
         <img src={Mars} alt="Mars" />
       </MarsPlanet>
-      <JupiterPlanet className="planet-orbit">
+      <JupiterPlanet isActive={pointedPlanet === "jupiter"} className={` planet-orbit`}>
         <img src={Jupiter} alt="Jupiter" />
       </JupiterPlanet>
-      <SaturnPlanet className="planet-orbit">
+      <SaturnPlanet isActive={pointedPlanet === "saturn"} className={` planet-orbit`}>
         <img src={Saturn} alt="Saturn" />
       </SaturnPlanet>
-      <UranusPlanet className="planet-orbit">
+      <UranusPlanet isActive={pointedPlanet === "uranus"} className={` planet-orbit`}>
         <img src={Uranus} alt="Uranus" />
       </UranusPlanet>
-      <NeptunePlanet className="planet-orbit">
+      <NeptunePlanet isActive={pointedPlanet === "neptune"} className={` planet-orbit`}>
         <img src={Neptune} alt="Neptune" />
       </NeptunePlanet>
     </div>
@@ -99,6 +116,10 @@ const SolarSystemLayout = styled.div`
       }
     }
 
+    .not-active {
+      border: 1px solid rgba(102, 166, 229, 0.12);
+
+    }
 
     @keyframes orbit {
       0% {
@@ -157,16 +178,20 @@ const Belt = styled.div`
   }
 
 `
-const MercuryPlanet = styled.div`
+
+
+const MercuryPlanet = styled.div<{
+  isActive: boolean
+}>`
   width: 90px;
   height: 90px;
   animation: orbit 7.1867343561s linear infinite;
   z-index: 8;
-  border: 1px solid rgba(102, 166, 229, 0.12);
+  border: 1px solid ${({ isActive }) => isActive ? "rgba(102, 166, 229, 1)" : "rgba(102, 166, 229, 0.12)"};
   cursor: pointer;
 
   &:hover {
-    border: 1px solid rgba(102, 166, 229, 1);
+    border: 1px solid rgba(102, 166, 229, 1) !important;
 
     img {
       transform: translate(-50%, -50%) scale(1.5);
@@ -179,16 +204,18 @@ const MercuryPlanet = styled.div`
   }
 
 `
-const VenusPlanet = styled.div`
+const VenusPlanet = styled.div<{
+  isActive: boolean
+}>`
   width: 140px;
   height: 140px;
   animation: orbit 19.1867343561s linear infinite;
   z-index: 7;
-  border: 1px solid rgba(102, 166, 229, 0.12);
+  border: 1px solid ${({ isActive }) => isActive ? "hsl(33, 82%, 61%)" : "rgba(102, 166, 229, 0.12)"};
   cursor: pointer;
 
   &:hover {
-    border: 1px solid hsl(33, 82%, 61%);
+    border: 1px solid hsl(33, 82%, 61%) !important;
 
     img {
       transform: translate(-50%, -50%) scale(1.5);
@@ -201,16 +228,18 @@ const VenusPlanet = styled.div`
   }
 
 `
-const EarthPlanet = styled.div`
+const EarthPlanet = styled.div<{
+  isActive: boolean
+}>`
   width: 190px;
   height: 190px;
   animation: orbit 30.1867343561s linear infinite;
   z-index: 6;
-  border: 1px solid rgba(102, 166, 229, 0.12);
+  border: 1px solid ${({ isActive }) => isActive ? "hsl(263, 67%, 51%)" : "rgba(102, 166, 229, 0.12)"};
   cursor: pointer;
 
   &:hover {
-    border: 1px solid hsl(263, 67%, 51%);
+    border: 1px solid hsl(263, 67%, 51%) !important;
 
     img {
       transform: translate(-50%, -50%) scale(1.5);
@@ -223,16 +252,18 @@ const EarthPlanet = styled.div`
   }
 
 `
-const MarsPlanet = styled.div`
+const MarsPlanet = styled.div<{
+  isActive: boolean
+}>`
   width: 250px;
   height: 250px;
   animation: orbit 97.1867343561s linear infinite;
   z-index: 5;
-  border: 1px solid rgba(102, 166, 229, 0.12);
+  border: 1px solid ${({ isActive }) => isActive ? "hsl(10, 63%, 51%)" : "rgba(102, 166, 229, 0.12)"};
   cursor: pointer;
 
   &:hover {
-    border: 1px solid hsl(10, 63%, 51%);
+    border: 1px solid hsl(10, 63%, 51%) !important;
 
     img {
       transform: translate(-50%, -50%) scale(1.5);
@@ -245,16 +276,18 @@ const MarsPlanet = styled.div`
   }
 
 `
-const JupiterPlanet = styled.div`
+const JupiterPlanet = styled.div<{
+  isActive: boolean
+}>`
   width: 400px;
   height: 400px;
   animation: orbit 350.1867343561s linear infinite;
   z-index: 4;
-  border: 1px solid rgba(102, 166, 229, 0.12);
+  border: 1px solid ${({ isActive }) => isActive ? "hsl(2, 68%, 53%)" : "rgba(102, 166, 229, 0.12)"};
   cursor: pointer;
 
   &:hover {
-    border: 1px solid hsl(2, 68%, 53%);
+    border: 1px solid hsl(2, 68%, 53%) !important;
 
 
     img {
@@ -268,16 +301,18 @@ const JupiterPlanet = styled.div`
   }
 
 `
-const SaturnPlanet = styled.div`
+const SaturnPlanet = styled.div<{
+  isActive: boolean
+}>`
   width: 500px;
   height: 500px;
   animation: orbit 800.1867343561s linear infinite;
   z-index: 3;
-  border: 1px solid rgba(102, 166, 229, 0.12);
+  border: 1px solid ${({ isActive }) => isActive ? " hsl(17, 73%, 46%)" : " rgba(102, 166, 229, 0.12)"};
   cursor: pointer;
 
   &:hover {
-    border: 1px solid hsl(17, 73%, 46%);
+    border: 1px solid hsl(17, 73%, 46%) !important;
 
 
     img {
@@ -292,16 +327,18 @@ const SaturnPlanet = styled.div`
 
 `
 
-const UranusPlanet = styled.div`
+const UranusPlanet = styled.div<{
+  isActive: boolean
+}>`
   width: 570px;
   height: 570px;
   animation: orbit 2500.1867343561s linear infinite;
   z-index: 2;
-  border: 1px solid rgba(102, 166, 229, 0.12);
+  border: 1px solid ${({ isActive }) => isActive ? "hsl(169, 73%, 44%)" : "rgba(102, 166, 229, 0.12)"};
   cursor: pointer;
 
   &:hover {
-    border: 1px solid hsl(169, 73%, 44%);
+    border: 1px solid hsl(169, 73%, 44%) !important;
 
 
     img {
@@ -318,16 +355,18 @@ const UranusPlanet = styled.div`
 
 `
 
-const NeptunePlanet = styled.div`
+const NeptunePlanet = styled.div<{
+  isActive: boolean
+}>`
   width: 625px;
   height: 625px;
   animation: orbit 4800.1867343561s linear infinite;
   z-index: 1;
-  border: 1px solid rgba(102, 166, 229, 0.12);
+  border: 1px solid ${({ isActive }) => isActive ? "hsl(222, 87%, 56%)" : "rgba(102, 166, 229, 0.12)"};
   cursor: pointer;
 
   &:hover {
-    border: 1px solid hsl(222, 87%, 56%);
+    border: 1px solid hsl(222, 87%, 56%) !important;
 
 
     img {

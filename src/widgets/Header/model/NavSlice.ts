@@ -1,21 +1,27 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+
+
+export type planetTypes = "mercury" | "venus" | "earth" | "mars" | "jupiter" | "saturn" | "uranus" | "neptune"
+
 
 interface initialStateType {
-
+  pointedPlanet: planetTypes | null
 }
 
-const initialState = {} as initialStateType
+const initialState = {
+  pointedPlanet: null
+} as initialStateType
 
 const NavSlice = createSlice({
   name: "NavSlice",
   initialState,
   reducers: {
 
-    // setType(state, action: PayloadAction<drawType>) {
-    //   state.drawType = action.payload
-    // },
+    setPointedPlanet(state, action: PayloadAction<planetTypes | null>) {
+      state.pointedPlanet = action.payload
+    }
 
   }
 })
-// export const { } = NavSlice.actions
+export const { setPointedPlanet } = NavSlice.actions
 export default NavSlice.reducer

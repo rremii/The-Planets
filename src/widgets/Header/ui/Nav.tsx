@@ -1,18 +1,30 @@
 import styled from "styled-components"
-import { FC } from "react"
+import { FC, SetStateAction } from "react"
 import { NavLink } from "react-router-dom"
 import { useLocation } from "react-router"
+import { planetTypes } from "../model/NavSlice"
 
 interface props {
-  href: string
+  OnHover: (href: SetStateAction<planetTypes | null>) => void
+  href: planetTypes
   color: string
 }
 
-export const Nav: FC<props> = ({ href, color }) => {
+export const Nav: FC<props> = ({ href, color, OnHover }) => {
+
   const location = useLocation()
 
+  const onMouseHover = () => {
+    OnHover(href)
+  }
+  const onMouseOut = () => {
+    OnHover(null)
+  }
+
+
   const pathname = location.pathname.slice(1)
-  return <NavLayout isActive={pathname === href} color={color} to={href}>
+  return <NavLayout onMouseOut={onMouseOut} onMouseOver={onMouseHover} isActive={pathname === href} color={color}
+                    to={href}>
     <span>{href}</span>
   </NavLayout>
 }
