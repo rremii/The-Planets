@@ -3,9 +3,11 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit"
 import { PreloadedState } from "redux"
 
 import NavSlice from "../../widgets/Header/model/NavSlice"
+import ViewModeSlice from "../../features/SwitchViewMode/model/ViewModeSlice"
 
 const rootReducer = combineReducers({
-  Nav: NavSlice
+  Nav: NavSlice,
+  ViewMode: ViewModeSlice
 })
 
 export const setupStore = (preloadedState?: PreloadedState<RootState>) => {

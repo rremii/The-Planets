@@ -11,17 +11,6 @@ import Neptune from "./../../../shared/assets/planet-neptune.svg"
 import { useTypedSelector } from "../../../shared/Hooks/store-hooks"
 
 
-const planets = [
-  { src: Mercury, name: "mercury" },
-  { src: Venus, name: "venus" },
-  { src: Earth, name: "earth" },
-  { src: Mars, name: "mars" },
-  { src: Jupiter, name: "jupiter" },
-  { src: Saturn, name: "saturn" },
-  { src: Uranus, name: "uranus" },
-  { src: Neptune, name: "neptune" }
-]
-
 export const SolarSystem = () => {
 
 
@@ -70,7 +59,6 @@ const SolarSystemLayout = styled.div`
   height: 100%;
   overflow: hidden;
   position: relative;
-
   display: flex;
   align-items: center;
   justify-content: center;
