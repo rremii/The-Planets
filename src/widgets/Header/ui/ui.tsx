@@ -11,11 +11,15 @@ import Jupiter from "./../../../shared/assets/planet-jupiter.svg"
 import Saturn from "./../../../shared/assets/planet-saturn.svg"
 import Uranus from "./../../../shared/assets/planet-uranus.svg"
 import Neptune from "./../../../shared/assets/planet-neptune.svg"
-import { planetTypes, setPointedPlanet } from "../model/NavSlice"
-import { useAppDispatch } from "../../../shared/Hooks/store-hooks"
+import { planetTypes, setPlanetSwitching, setPointedPlanet } from "../model/NavSlice"
+import { useAppDispatch, useTypedSelector } from "../../../shared/Hooks/store-hooks"
+import { useNavigate } from "react-router-dom"
 
 export const Header = () => {
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
+
+  const isPlanetSwitching = useTypedSelector(state => state.Nav.isPlanetSwitching)
 
   const [isBurgerActive, setBurgerActive] = useState(false)
   const [pointedPlanet, setPlanet] = useState<planetTypes | null>(null)
@@ -26,17 +30,29 @@ export const Header = () => {
   }, [pointedPlanet])
 
 
+  const OnPlanetChange = (e: any, path: string) => {
+    e?.preventDefault()
+    if (isPlanetSwitching) return
+    dispatch(setPlanetSwitching(true))
+    setTimeout(() => {
+      navigate(path)
+    }, 1300)
+    setTimeout(() => {
+      dispatch(setPlanetSwitching(false))
+    }, 2900)
+  }
+
   return <HeaderLayout>
     <LogoLink href="" />
     <div className="nav-box">
-      <Nav OnHover={setPlanet} color={"rgb(222,244,252)"} href={"mercury"} />
-      <Nav OnHover={setPlanet} color={"rgb(247,204,126)"} href={"venus"} />
-      <Nav OnHover={setPlanet} color={"rgb(82,88,254)"} href={"earth"} />
-      <Nav OnHover={setPlanet} color={"rgb(255,108,71)"} href={"mars"} />
-      <Nav OnHover={setPlanet} color={"rgb(236,173,121)"} href={"jupiter"} />
-      <Nav OnHover={setPlanet} color={"rgb(252,203,105)"} href={"saturn"} />
-      <Nav OnHover={setPlanet} color={"rgb(102,240,212)"} href={"uranus"} />
-      <Nav OnHover={setPlanet} color={"rgb(71,125,250)"} href={"neptune"} />
+      <Nav callback={OnPlanetChange} OnHover={setPlanet} color={"rgb(222,244,252)"} href={"mercury"} />
+      <Nav callback={OnPlanetChange} OnHover={setPlanet} color={"rgb(247,204,126)"} href={"venus"} />
+      <Nav callback={OnPlanetChange} OnHover={setPlanet} color={"rgb(82,88,254)"} href={"earth"} />
+      <Nav callback={OnPlanetChange} OnHover={setPlanet} color={"rgb(255,108,71)"} href={"mars"} />
+      <Nav callback={OnPlanetChange} OnHover={setPlanet} color={"rgb(236,173,121)"} href={"jupiter"} />
+      <Nav callback={OnPlanetChange} OnHover={setPlanet} color={"rgb(252,203,105)"} href={"saturn"} />
+      <Nav callback={OnPlanetChange} OnHover={setPlanet} color={"rgb(102,240,212)"} href={"uranus"} />
+      <Nav callback={OnPlanetChange} OnHover={setPlanet} color={"rgb(71,125,250)"} href={"neptune"} />
     </div>
     <Burger className={isBurgerActive ? "burgerActive" : ""} onClick={() => setBurgerActive(!isBurgerActive)}>
       <span /><span /><span />

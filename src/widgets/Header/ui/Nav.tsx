@@ -8,9 +8,10 @@ interface props {
   OnHover: (href: SetStateAction<planetTypes | null>) => void
   href: planetTypes
   color: string
+  callback?: (e: any, path: string) => void
 }
 
-export const Nav: FC<props> = ({ href, color, OnHover }) => {
+export const Nav: FC<props> = ({ href, color, OnHover, callback }) => {
 
   const location = useLocation()
 
@@ -23,7 +24,10 @@ export const Nav: FC<props> = ({ href, color, OnHover }) => {
 
 
   const pathname = location.pathname.slice(1)
-  return <NavLayout onMouseOut={onMouseOut} onMouseOver={onMouseHover} isActive={pathname === href} color={color}
+  return <NavLayout onClick={(e: any) => callback ? callback(e, href) : ""} onMouseOut={onMouseOut}
+                    onMouseOver={onMouseHover}
+                    isActive={pathname === href}
+                    color={color}
                     to={href}>
     <span>{href}</span>
   </NavLayout>

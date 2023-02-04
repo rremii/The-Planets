@@ -6,10 +6,12 @@ export type planetTypes = "mercury" | "venus" | "earth" | "mars" | "jupiter" | "
 
 interface initialStateType {
   pointedPlanet: planetTypes | null
+  isPlanetSwitching: boolean
 }
 
 const initialState = {
-  pointedPlanet: null
+  pointedPlanet: null,
+  isPlanetSwitching: false
 } as initialStateType
 
 const NavSlice = createSlice({
@@ -19,9 +21,12 @@ const NavSlice = createSlice({
 
     setPointedPlanet(state, action: PayloadAction<planetTypes | null>) {
       state.pointedPlanet = action.payload
+    },
+    setPlanetSwitching(state, action: PayloadAction<boolean>) {
+      state.isPlanetSwitching = action.payload
     }
 
   }
 })
-export const { setPointedPlanet } = NavSlice.actions
+export const { setPointedPlanet, setPlanetSwitching } = NavSlice.actions
 export default NavSlice.reducer

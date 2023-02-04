@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import React, { FC } from "react"
+import { useTypedSelector } from "../../../shared/Hooks/store-hooks"
 
 
 interface props {
@@ -8,8 +9,12 @@ interface props {
 
 export const PlanetSidebar: FC<props> = ({ after }) => {
 
-  return <PlanetSidebarLayout>
 
+  const isSwitching = useTypedSelector(state => state.ViewMode.isSwitching)
+  const isPlanetSwitching = useTypedSelector(state => state.Nav.isPlanetSwitching)
+
+
+  return <PlanetSidebarLayout isSwitching={isPlanetSwitching} isActive={!isSwitching}>
     <div className="text-content">
       <h1 className="title">Earth</h1>
       <p className="info">Third planet from the Sun and the only known planet to harbor life. About 29.2% of Earth's
@@ -22,11 +27,44 @@ export const PlanetSidebar: FC<props> = ({ after }) => {
   </PlanetSidebarLayout>
 
 }
-const PlanetSidebarLayout = styled.div`
+const PlanetSidebarLayout = styled.div<{
+  isActive: boolean
+  isSwitching: boolean
+
+}>`
 
   display: flex;
   flex-direction: column;
   gap: 30px;
+
+  animation: ${({ isSwitching }) => isSwitching ? "slideSideBar 2.9s linear" : "none"};
+  @keyframes slideSideBar {
+
+    0% {
+      opacity: 1;
+
+      transform: translateX(0);
+    }
+
+    39% {
+      opacity: 0;
+    }
+
+    49% {
+      transform: translateX(10%);
+    }
+    60% {
+      transform: translateX(10%);
+    }
+    69% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+  }
 
   .text-content {
     display: flex;
@@ -46,6 +84,11 @@ const PlanetSidebarLayout = styled.div`
       font-family: 'League Spartan', sans-serif;
       color: rgba(255, 255, 255, 0.75);
       line-height: 1.6;
+      transition: .7s;
+      opacity: ${({ isActive }) => isActive ? 1 : 0};
+      transform: ${({ isActive }) => isActive ? "scaleY(1)" : "scaleY(1.1) "};
+
+
     }
 
     .link {

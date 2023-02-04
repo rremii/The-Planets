@@ -5,10 +5,12 @@ export type viewMode = "overview" | "structure" | "surface"
 
 interface initialStateType {
   viewMode: viewMode
+  isSwitching: boolean
 }
 
 const initialState = {
-  viewMode: "overview"
+  viewMode: "overview",
+  isSwitching: false
 } as initialStateType
 
 const ViewModeSlice = createSlice({
@@ -18,9 +20,12 @@ const ViewModeSlice = createSlice({
 
     setViewMode(state, action: PayloadAction<viewMode>) {
       state.viewMode = action.payload
+    },
+    setIsSwitching(state, action: PayloadAction<boolean>) {
+      state.isSwitching = action.payload
     }
 
   }
 })
-export const { setViewMode } = ViewModeSlice.actions
+export const { setViewMode, setIsSwitching } = ViewModeSlice.actions
 export default ViewModeSlice.reducer

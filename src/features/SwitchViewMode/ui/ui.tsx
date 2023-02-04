@@ -1,15 +1,22 @@
 import styled from "styled-components"
 import { useAppDispatch, useTypedSelector } from "../../../shared/Hooks/store-hooks"
-import { setViewMode, viewMode } from "../model/ViewModeSlice"
+import { setIsSwitching, setViewMode, viewMode } from "../model/ViewModeSlice"
 
 export const SwitchViewMode = () => {
   const dispatch = useAppDispatch()
 
   const viewMode = useTypedSelector(state => state.ViewMode.viewMode)
 
-  
+
   const SetViewMode = (mode: viewMode) => {
-    dispatch(setViewMode(mode))
+    dispatch(setIsSwitching(true))
+    setTimeout(() => {
+      dispatch(setViewMode(mode))
+    }, 700)
+    setTimeout(() => {
+      dispatch(setIsSwitching(false))
+
+    }, 1000)
   }
 
   return <SwitchViewLayout>

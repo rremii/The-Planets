@@ -1,13 +1,13 @@
 import styled from "styled-components"
 import { PlanetWidget } from "../../widgets/Planet"
 
-const EarthPage = () => {
-  return <EarthPageLayout>
+const PlanetPage = () => {
+  return <PlanetPageLayout>
     <PlanetWidget />
-  </EarthPageLayout>
+  </PlanetPageLayout>
 }
-export default EarthPage
-const EarthPageLayout = styled.div`
+export default PlanetPage
+const PlanetPageLayout = styled.div`
   height: 100%;
   width: 100vw;
   flex: 1 1 auto;
