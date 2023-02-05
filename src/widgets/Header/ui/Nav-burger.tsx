@@ -21,11 +21,12 @@ const ArrowRight = () => {
 interface props {
   href: string
   src: string
+  callback: () => void
 }
 
-export const NavBurger: FC<props> = ({ href, src }) => {
+export const NavBurger: FC<props> = ({ href, src, callback }) => {
 
-  return <NavBurgerLayout to={href}>
+  return <NavBurgerLayout onClick={callback} to={href}>
     <img src={src} alt={src} />
     <span>{href}</span>
     <ArrowRight />

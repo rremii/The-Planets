@@ -42,7 +42,7 @@ const SwitchViewLayout = styled.div`
   gap: 15px;
 
   .active {
-    background-color: hsl(263, 67%, 51%);
+    background-color: var(--planet-color);
   }
 
   @media (max-width: 650px) {

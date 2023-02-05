@@ -38,6 +38,9 @@ const PlanetImgBoxLayout = styled.div<{
   opacity: ${({ isActive }) => isActive ? 1 : 0};
   transform: ${({ isActive }) => isActive ? "scale(1) rotate(0)" : "scale(0.5) rotate(180deg)"};
 
+  min-height: 450px;
+  max-height: 550px;
+  height: max-content;
   animation: ${({ isSwitching }) => isSwitching ? "slide 2.5s linear" : "none"};
   @keyframes slide {
 
@@ -73,7 +76,7 @@ const PlanetImgBoxLayout = styled.div<{
   @media (max-width: 650px) {
     padding-top: 60px;
     img {
-
+      object-fit: contain;
       width: 100%;
     }
 
@@ -84,7 +87,8 @@ const PlanetImgBoxLayout = styled.div<{
   }
 
   img {
-
+    display: block;
+    height: 100%;
   }
 
   .addition {

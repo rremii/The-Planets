@@ -1,6 +1,9 @@
 import styled from "styled-components"
 import React, { FC } from "react"
 import { useTypedSelector } from "../../../shared/Hooks/store-hooks"
+import { useGetPlanetQuery } from "../../../shared/api/rtk/PlanetApi"
+import { useLocation } from "react-router"
+import useSetCssVars from "../../../shared/Hooks/useSetCssVars"
 
 
 interface props {
@@ -8,20 +11,30 @@ interface props {
 }
 
 export const PlanetSidebar: FC<props> = ({ after }) => {
+  const location = useLocation()
+  const pathname = location.pathname.slice(1)
 
 
   const isSwitching = useTypedSelector(state => state.ViewMode.isSwitching)
+  const viewMode = useTypedSelector(state => state.ViewMode.viewMode)
   const isPlanetSwitching = useTypedSelector(state => state.Nav.isPlanetSwitching)
+
+
+  useSetCssVars()
+
+  const { data: planet, isLoading } = useGetPlanetQuery(pathname, {
+    skip: !pathname
+  })
 
 
   return <PlanetSidebarLayout isSwitching={isPlanetSwitching} isActive={!isSwitching}>
     <div className="text-content">
-      <h1 className="title">Earth</h1>
-      <p className="info">Third planet from the Sun and the only known planet to harbor life. About 29.2% of Earth's
-        surface is land with
-        remaining 70.8% is covered with water. Earths distance from the Sun, physical properties and geological history
-        have allowed life to evolve and thrive.</p>
-      <span className="link">Source: <a href="#">Wikipedia</a></span>
+      <h1 className="title">{planet?.name}</h1>
+      <p className="info">{
+        viewMode === "overview" ? planet?.introInfo?.overview :
+          viewMode === "structure" ? planet?.introInfo?.structure :
+            viewMode === "surface" ? planet?.introInfo?.surface : ""}</p>
+      <span className="link">Source: <a href={planet?.source}>Wikipedia</a></span>
     </div>
     {after}
   </PlanetSidebarLayout>

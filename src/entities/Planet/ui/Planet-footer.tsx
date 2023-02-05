@@ -1,22 +1,31 @@
 import styled from "styled-components"
+import { useGetPlanetQuery } from "../../../shared/api/rtk/PlanetApi"
+import { useLocation } from "react-router"
 
 export const PlanetFooter = () => {
+  const location = useLocation()
+  const pathname = location.pathname.slice(1)
+
+  const { data: planet } = useGetPlanetQuery(pathname, {
+    skip: !pathname
+  })
+
   return <PlanetFooterLayout>
     <div className="content-box">
       <h2 className="title">rotation time</h2>
-      <p className="info">0.99 DAYS</p>
+      <p className="info">{planet?.Info.rotationTime}</p>
     </div>
     <div className="content-box">
-      <h2 className="title">rotation time</h2>
-      <p className="info">0.99 DAYS</p>
+      <h2 className="title">revolution time</h2>
+      <p className="info">{planet?.Info.revolutionTime}</p>
     </div>
     <div className="content-box">
-      <h2 className="title">rotation time</h2>
-      <p className="info">0.99 DAYS</p>
+      <h2 className="title">radius</h2>
+      <p className="info">{planet?.Info.radius}</p>
     </div>
     <div className="content-box">
-      <h2 className="title">rotation time</h2>
-      <p className="info">0.99 DAYS</p>
+      <h2 className="title">average temp.</h2>
+      <p className="info">{planet?.Info.averageTemp}</p>
     </div>
   </PlanetFooterLayout>
 }
