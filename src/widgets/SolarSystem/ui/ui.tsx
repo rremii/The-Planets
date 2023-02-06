@@ -8,14 +8,36 @@ import Jupiter from "./../../../shared/assets/planet-jupiter.svg"
 import Saturn from "./../../../shared/assets/planet-saturn.svg"
 import Uranus from "./../../../shared/assets/planet-uranus.svg"
 import Neptune from "./../../../shared/assets/planet-neptune.svg"
-import { useTypedSelector } from "../../../shared/Hooks/store-hooks"
+import { useAppDispatch, useTypedSelector } from "../../../shared/Hooks/store-hooks"
+import { setPlanetSwitching } from "../../Header/model/NavSlice"
+import { NavLink, useNavigate } from "react-router-dom"
+import { useLocation } from "react-router"
 
 
 export const SolarSystem = () => {
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
+  const location = useLocation()
+  const pathname = location.pathname.slice(1)
 
 
   const pointedPlanet = useTypedSelector(state => state.Nav.pointedPlanet)
+  const isPlanetSwitching = useTypedSelector(state => state.Nav.isPlanetSwitching)
 
+
+  const OnPlanetChange = (e: any, path: string) => {
+    e?.preventDefault()
+    if (isPlanetSwitching) return
+    if (!pathname) return navigate(path)
+
+    dispatch(setPlanetSwitching(true))
+    setTimeout(() => {
+      navigate(path)
+    }, 1300)
+    setTimeout(() => {
+      dispatch(setPlanetSwitching(false))
+    }, 2900)
+  }
 
   return <SolarSystemLayout>
     <div className="container">
@@ -24,28 +46,36 @@ export const SolarSystem = () => {
         <img src={Sun} alt="Sun" />
       </div>
       <Belt />
-      <MercuryPlanet isActive={pointedPlanet === "mercury"} className={` planet-orbit`}>
+      <MercuryPlanet onClick={(e) => OnPlanetChange(e, "mercury")} to={"mercury"} isActive={pointedPlanet === "mercury"}
+                     className={` planet-orbit`}>
         <img src={Mercury} alt="Mercury" />
       </MercuryPlanet>
-      <VenusPlanet isActive={pointedPlanet === "venus"} className={` planet-orbit`}>
+      <VenusPlanet onClick={(e) => OnPlanetChange(e, "venus")} isActive={pointedPlanet === "venus"}
+                   className={` planet-orbit`}>
         <img src={Venus} alt="Venus" />
       </VenusPlanet>
-      <EarthPlanet isActive={pointedPlanet === "earth"} className={` planet-orbit`}>
+      <EarthPlanet onClick={(e) => OnPlanetChange(e, "earth")} isActive={pointedPlanet === "earth"}
+                   className={` planet-orbit`}>
         <img src={Earth} alt="Earth" />
       </EarthPlanet>
-      <MarsPlanet isActive={pointedPlanet === "mars"} className={` planet-orbit`}>
+      <MarsPlanet onClick={(e) => OnPlanetChange(e, "mars")} isActive={pointedPlanet === "mars"}
+                  className={` planet-orbit`}>
         <img src={Mars} alt="Mars" />
       </MarsPlanet>
-      <JupiterPlanet isActive={pointedPlanet === "jupiter"} className={` planet-orbit`}>
+      <JupiterPlanet onClick={(e) => OnPlanetChange(e, "jupiter")} isActive={pointedPlanet === "jupiter"}
+                     className={` planet-orbit`}>
         <img src={Jupiter} alt="Jupiter" />
       </JupiterPlanet>
-      <SaturnPlanet isActive={pointedPlanet === "saturn"} className={` planet-orbit`}>
+      <SaturnPlanet onClick={(e) => OnPlanetChange(e, "saturn")} isActive={pointedPlanet === "saturn"}
+                    className={` planet-orbit`}>
         <img src={Saturn} alt="Saturn" />
       </SaturnPlanet>
-      <UranusPlanet isActive={pointedPlanet === "uranus"} className={` planet-orbit`}>
+      <UranusPlanet onClick={(e) => OnPlanetChange(e, "uranus")} isActive={pointedPlanet === "uranus"}
+                    className={` planet-orbit`}>
         <img src={Uranus} alt="Uranus" />
       </UranusPlanet>
-      <NeptunePlanet isActive={pointedPlanet === "neptune"} className={` planet-orbit`}>
+      <NeptunePlanet onClick={(e) => OnPlanetChange(e, "neptune")} isActive={pointedPlanet === "neptune"}
+                     className={` planet-orbit`}>
         <img src={Neptune} alt="Neptune" />
       </NeptunePlanet>
     </div>
@@ -168,7 +198,7 @@ const Belt = styled.div`
 `
 
 
-const MercuryPlanet = styled.div<{
+const MercuryPlanet = styled(NavLink)<{
   isActive: boolean
 }>`
   width: 90px;
