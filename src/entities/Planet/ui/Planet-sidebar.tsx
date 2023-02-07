@@ -18,6 +18,7 @@ export const PlanetSidebar: FC<props> = ({ after }) => {
   const isSwitching = useTypedSelector(state => state.ViewMode.isSwitching)
   const viewMode = useTypedSelector(state => state.ViewMode.viewMode)
   const isPlanetSwitching = useTypedSelector(state => state.Nav.isPlanetSwitching)
+  const isPlanetSetting = useTypedSelector(state => state.Nav.isPlanetSetting)
 
 
   useSetCssVars()
@@ -27,7 +28,7 @@ export const PlanetSidebar: FC<props> = ({ after }) => {
   })
 
 
-  return <PlanetSidebarLayout isSwitching={isPlanetSwitching} isActive={!isSwitching}>
+  return <PlanetSidebarLayout isSetting={isPlanetSetting} isSwitching={isPlanetSwitching} isActive={!isSwitching}>
     <div className="text-content">
       <h1 className="title">{planet?.name}</h1>
       <p className="info">{
@@ -42,16 +43,38 @@ export const PlanetSidebar: FC<props> = ({ after }) => {
 }
 const PlanetSidebarLayout = styled.div<{
   isActive: boolean
-  isSwitching: boolean
-
+  isSwitching: boolean | null
+  isSetting: boolean | null
 }>`
 
   display: flex;
   flex-direction: column;
   gap: 30px;
 
-  animation: ${({ isSwitching }) => isSwitching ? "slideSideBar 2.9s linear" : "none"};
-  @keyframes slideSideBar {
+  animation: ${({ isSwitching, isSetting }) => {
+    if (isSwitching === null && isSetting === null) return "slideSideBarRight 1.45s linear !important"
+    if (isSetting) return "slideSideBarRight 1.45s linear !important"
+    if (isSwitching) return "slideSideBarBoth 2.9s linear !important"
+    else return "none !important"
+  }};
+  @keyframes slideSideBarRight {
+    0% {
+      opacity: 0;
+      transform: translateX(10%);
+    }
+    30% {
+      transform: translateX(10%);
+    }
+    35% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+  }
+  @keyframes slideSideBarBoth {
 
     0% {
       opacity: 1;

@@ -37,7 +37,6 @@ const PlanetFooterLayout = styled.div`
   align-items: center;
   gap: 20px;
   padding-bottom: 36px;
-
   @media (max-width: 850px) {
     flex-direction: column;
     justify-content: center;
