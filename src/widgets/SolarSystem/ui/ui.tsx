@@ -8,42 +8,23 @@ import Jupiter from "./../../../shared/assets/planet-jupiter.svg"
 import Saturn from "./../../../shared/assets/planet-saturn.svg"
 import Uranus from "./../../../shared/assets/planet-uranus.svg"
 import Neptune from "./../../../shared/assets/planet-neptune.svg"
-import { useAppDispatch, useTypedSelector } from "../../../shared/Hooks/store-hooks"
-import { setPlanetSetting, setPlanetSwitching } from "../../Header/model/NavSlice"
-import { NavLink, useNavigate } from "react-router-dom"
-import { useLocation } from "react-router"
+import { useTypedSelector } from "../../../shared/Hooks/store-hooks"
+import { NavLink } from "react-router-dom"
+import useOnPlanetChange from "../../../shared/Hooks/useOnPlanetChange"
 
 
 export const SolarSystem = () => {
-  const dispatch = useAppDispatch()
-  const navigate = useNavigate()
-  const location = useLocation()
-  const pathname = location.pathname.slice(1)
 
 
   const pointedPlanet = useTypedSelector(state => state.Nav.pointedPlanet)
-  const isPlanetSwitching = useTypedSelector(state => state.Nav.isPlanetSwitching)
+
+
+  const [ChangePlanet] = useOnPlanetChange()
 
 
   const OnPlanetChange = (e: any, path: string) => {
     e?.preventDefault()
-    if (isPlanetSwitching) return
-    if (!pathname) {
-      dispatch(setPlanetSetting(true))
-      navigate(path)
-      setTimeout(() => {
-        dispatch(setPlanetSetting(false))
-      }, 2900)
-    }
-    if (pathname) {
-      dispatch(setPlanetSwitching(true))
-      setTimeout(() => {
-        navigate(path)
-      }, 1300)
-      setTimeout(() => {
-        dispatch(setPlanetSwitching(false))
-      }, 2900)
-    }
+    ChangePlanet(path)
   }
 
   return <SolarSystemLayout>

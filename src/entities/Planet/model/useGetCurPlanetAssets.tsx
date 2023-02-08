@@ -1,5 +1,4 @@
 import { useLocation } from "react-router"
-import { useTypedSelector } from "../../../shared/Hooks/store-hooks"
 import { EarthAssets } from "../assets/earth"
 import { JupiterAssets } from "../assets/jupiter"
 import { MarsAssets } from "../assets/mars"

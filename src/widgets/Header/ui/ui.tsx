@@ -11,10 +11,8 @@ import Jupiter from "./../../../shared/assets/planet-jupiter.svg"
 import Saturn from "./../../../shared/assets/planet-saturn.svg"
 import Uranus from "./../../../shared/assets/planet-uranus.svg"
 import Neptune from "./../../../shared/assets/planet-neptune.svg"
-import { planetTypes, setPlanetSetting, setPlanetSwitching, setPointedPlanet } from "../model/NavSlice"
-import { useAppDispatch, useTypedSelector } from "../../../shared/Hooks/store-hooks"
-import { useNavigate } from "react-router-dom"
-import { useLocation } from "react-router"
+import { planetTypes, setPointedPlanet } from "../model/NavSlice"
+import { useAppDispatch } from "../../../shared/Hooks/store-hooks"
 import {
   earthColor,
   jupiterColor,
@@ -25,18 +23,16 @@ import {
   uranusColor,
   venusColor
 } from "../../../shared/Hooks/useSetCssVars"
+import useOnPlanetChange from "../../../shared/Hooks/useOnPlanetChange"
 
 export const Header = () => {
   const dispatch = useAppDispatch()
-  const navigate = useNavigate()
-  const location = useLocation()
-  const pathname = location.pathname.slice(1)
-
-  const isPlanetSwitching = useTypedSelector(state => state.Nav.isPlanetSwitching)
-
+ 
   const [isBurgerActive, setBurgerActive] = useState(false)
   const [pointedPlanet, setPlanet] = useState<planetTypes | null>(null)
 
+
+  const [ChangePlanet] = useOnPlanetChange()
 
   useEffect(() => {
     dispatch(setPointedPlanet(pointedPlanet))
@@ -45,23 +41,7 @@ export const Header = () => {
 
   const OnPlanetChange = (e: any, path: string) => {
     e?.preventDefault()
-    if (isPlanetSwitching) return
-    if (!pathname) {
-      dispatch(setPlanetSetting(true))
-      navigate(path)
-      setTimeout(() => {
-        dispatch(setPlanetSetting(false))
-      }, 2900)
-    }
-    if (pathname) {
-      dispatch(setPlanetSwitching(true))
-      setTimeout(() => {
-        navigate(path)
-      }, 1300)
-      setTimeout(() => {
-        dispatch(setPlanetSwitching(false))
-      }, 2900)
-    }
+    ChangePlanet(path)
   }
 
   const OnPlanetChangeBurger = () => {

@@ -23,7 +23,7 @@ export const PlanetSidebar: FC<props> = ({ after }) => {
 
   useSetCssVars()
 
-  const { data: planet, isLoading } = useGetPlanetQuery(pathname, {
+  const { data: planet } = useGetPlanetQuery(pathname, {
     skip: !pathname
   })
 

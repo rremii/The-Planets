@@ -20,6 +20,7 @@
     "react-router-dom": "^6.8.0"
   },
   "devDependencies": {
+    "@tsconfig/recommended": "^1.0.2",
     "@types/compose-function": "^0.0.30",
     "@types/node": "^18.11.19",
     "@types/react": "^18.0.26",
