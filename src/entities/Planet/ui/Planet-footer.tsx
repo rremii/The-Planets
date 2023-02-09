@@ -1,6 +1,6 @@
 import styled from "styled-components"
-import { useGetPlanetQuery } from "../../../shared/api/rtk/PlanetApi"
 import { useLocation } from "react-router"
+import { useGetPlanetQuery } from "../api/PlanetApi"
 
 export const PlanetFooter = () => {
   const location = useLocation()

@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { viewMode } from "./types"
 
-
-export type viewMode = "overview" | "structure" | "surface"
 
 interface initialStateType {
   viewMode: viewMode

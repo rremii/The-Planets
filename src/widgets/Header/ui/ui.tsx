@@ -1,7 +1,7 @@
 import styled from "styled-components"
-import { Nav } from "./Nav"
+import { Nav } from "../../../shared/ui/Nav"
 import { LogoLink } from "../../../shared/logo-link"
-import { NavBurger } from "./Nav-burger"
+import { NavBurger } from "../../../shared/ui/Nav-burger"
 import { useEffect, useState } from "react"
 import Mercury from "./../../../shared/assets/planet-mercury.svg"
 import Venus from "./../../../shared/assets/planet-venus.svg"
@@ -27,7 +27,7 @@ import useOnPlanetChange from "../../../shared/Hooks/useOnPlanetChange"
 
 export const Header = () => {
   const dispatch = useAppDispatch()
- 
+
   const [isBurgerActive, setBurgerActive] = useState(false)
   const [pointedPlanet, setPlanet] = useState<planetTypes | null>(null)
 

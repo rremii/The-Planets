@@ -1,9 +1,9 @@
 import styled from "styled-components"
 import React, { FC } from "react"
 import { useTypedSelector } from "../../../shared/Hooks/store-hooks"
-import { useGetPlanetQuery } from "../../../shared/api/rtk/PlanetApi"
 import { useLocation } from "react-router"
 import useSetCssVars from "../../../shared/Hooks/useSetCssVars"
+import { useGetPlanetQuery } from "../api/PlanetApi"
 
 
 interface props {

@@ -2,7 +2,7 @@ import styled from "styled-components"
 import { FC, SetStateAction } from "react"
 import { NavLink } from "react-router-dom"
 import { useLocation } from "react-router"
-import { planetTypes } from "../model/NavSlice"
+import { planetTypes } from "../../widgets/Header/model/types"
 
 interface props {
   OnHover: (href: SetStateAction<planetTypes | null>) => void
