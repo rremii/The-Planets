@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { planetTypes } from "./types"
+import { planetTypes } from "../types"
 
 
 interface initialStateType {
@@ -32,4 +32,4 @@ const NavSlice = createSlice({
   }
 })
 export const { setPointedPlanet, setPlanetSwitching, setPlanetSetting } = NavSlice.actions
-export default NavSlice.reducer
+export const NavReducer = NavSlice.reducer

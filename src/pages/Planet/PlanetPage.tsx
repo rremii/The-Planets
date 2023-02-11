@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { PlanetWidget } from "../../widgets/Planet"
+import { PlanetWidget } from "@widgets/Planet"
 
 const PlanetPage = () => {
   return <PlanetPageLayout>

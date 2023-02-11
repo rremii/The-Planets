@@ -1,6 +1,5 @@
-import { planetTypes } from "widgets/Header/model/NavSlice"
-import { Api } from "../../../shared/api/config/Api"
-import { planetDataType } from "./types"
+import { Api } from "@shared/api/config/Api"
+import { planetDataType } from "../types"
 
 
 const PlanetApi = Api.injectEndpoints({

@@ -1,6 +1,7 @@
 import styled from "styled-components"
-import { useAppDispatch, useTypedSelector } from "../../../shared/Hooks/store-hooks"
-import { setIsSwitching, setViewMode, viewMode } from "../model/ViewModeSlice"
+import { useAppDispatch, useTypedSelector } from "@shared/Hooks/store-hooks"
+import { setIsSwitching, setViewMode } from "../model"
+import { viewMode } from "../types"
 
 export const SwitchViewMode = () => {
   const dispatch = useAppDispatch()

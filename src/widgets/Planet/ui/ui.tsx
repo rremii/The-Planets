@@ -1,8 +1,9 @@
-import { PlanetFooter, PlanetImgBox, PlanetSidebar } from "../../../entities/Planet"
+import { PlanetFooter, PlanetImgBox, PlanetSidebar } from "@entities/Planet"
 import styled from "styled-components"
-import { SwitchViewMode } from "../../../features/SwitchViewMode"
+import { SwitchViewMode } from "@features/SwitchViewMode"
 
 export const PlanetWidget = () => {
+
 
   return <PlanetWidgetLayout>
     <PlanetImgBox />

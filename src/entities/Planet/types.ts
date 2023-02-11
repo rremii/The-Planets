@@ -1,4 +1,10 @@
-import { planetTypes } from "../../../widgets/Header/model/NavSlice"
+import { planetTypes } from "../../widgets/Header/types"
+
+export interface planetAssets {
+  geology: string,
+  internal: string,
+  overview: string
+}
 
 export type planetDataType = {
   name: planetTypes,
@@ -15,3 +21,4 @@ export type planetDataType = {
     averageTemp: string
   }
 }
+

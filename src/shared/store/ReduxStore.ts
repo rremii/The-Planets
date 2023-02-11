@@ -1,14 +1,12 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit"
-
-import { PreloadedState } from "redux"
-
-import NavSlice from "../../widgets/Header/model/NavSlice"
-import ViewModeSlice from "../../features/SwitchViewMode/model/ViewModeSlice"
+import { combineReducers, configureStore, PreloadedState } from "@reduxjs/toolkit"
+import { ViewModeModel } from "@features/SwitchViewMode"
+import { Reducer } from "redux"
+import { NavModel } from "@widgets/Header"
 import { Api } from "../api/config/Api"
 
-const rootReducer = combineReducers({
-  Nav: NavSlice,
-  ViewMode: ViewModeSlice,
+const rootReducer: Reducer = combineReducers({
+  Nav: NavModel.NavReducer,
+  ViewMode: ViewModeModel.ViewModeReducer,
   [Api.reducerPath]: Api.reducer
 
 })

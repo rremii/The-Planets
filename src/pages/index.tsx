@@ -1,8 +1,8 @@
 import { lazy } from "react"
 import { Route, Routes } from "react-router-dom"
-import PlanetPage from "./Planet/PlanetPage"
 
 const MainPage = lazy(() => import("./Main/MainPage"))
+const PlanetPage = lazy(() => import("./Planet/PlanetPage"))
 
 export const Routing = () => {
   return (

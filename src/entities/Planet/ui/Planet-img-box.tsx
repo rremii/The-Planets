@@ -1,7 +1,7 @@
 import styled from "styled-components"
-import { useTypedSelector } from "../../../shared/Hooks/store-hooks"
-import useGetCurPlanetAssets from "../model/useGetCurPlanetAssets"
-import setViewModeOnUrlChange from "../model/setViewModeOnUrlChange"
+import { useTypedSelector } from "@shared/Hooks/store-hooks"
+import useGetCurPlanetAssets from "../hooks/useGetCurPlanetAssets"
+import setViewModeOnUrlChange from "../hooks/setViewModeOnUrlChange"
 
 
 export const PlanetImgBox = () => {

@@ -1,7 +1,8 @@
 import { useAppDispatch } from "../../../shared/Hooks/store-hooks"
 import { useLocation } from "react-router"
 import { useEffect } from "react"
-import { setViewMode } from "../../../features/SwitchViewMode/model/ViewModeSlice"
+import { ViewModeModel } from "./../../../features/SwitchViewMode"
+
 
 const setViewModeOnUrlChange = () => {
   const dispatch = useAppDispatch()
@@ -9,7 +10,7 @@ const setViewModeOnUrlChange = () => {
 
 
   useEffect(() => {
-    dispatch(setViewMode("overview"))
+    dispatch(ViewModeModel.setViewMode("overview"))
   }, [location.pathname])
 
 

@@ -1,18 +1,17 @@
 import styled from "styled-components"
-import { Nav } from "../../../shared/ui/Nav"
-import { LogoLink } from "../../../shared/logo-link"
-import { NavBurger } from "../../../shared/ui/Nav-burger"
+import { Nav } from "@shared/ui/Nav"
+import { LogoLink } from "@shared/ui/logo-link"
+import { NavBurger } from "@shared/ui/Nav-burger"
 import { useEffect, useState } from "react"
-import Mercury from "./../../../shared/assets/planet-mercury.svg"
-import Venus from "./../../../shared/assets/planet-venus.svg"
-import Earth from "./../../../shared/assets/planet-earth.svg"
-import Mars from "./../../../shared/assets/planet-mars.svg"
-import Jupiter from "./../../../shared/assets/planet-jupiter.svg"
-import Saturn from "./../../../shared/assets/planet-saturn.svg"
-import Uranus from "./../../../shared/assets/planet-uranus.svg"
-import Neptune from "./../../../shared/assets/planet-neptune.svg"
-import { planetTypes, setPointedPlanet } from "../model/NavSlice"
-import { useAppDispatch } from "../../../shared/Hooks/store-hooks"
+import Mercury from "@shared/assets/planet-mercury.svg"
+import Venus from "@shared/assets/planet-venus.svg"
+import Earth from "@shared/assets/planet-earth.svg"
+import Mars from "@shared/assets/planet-mars.svg"
+import Jupiter from "@shared/assets/planet-jupiter.svg"
+import Saturn from "@shared/assets/planet-saturn.svg"
+import Uranus from "@shared/assets/planet-uranus.svg"
+import Neptune from "@shared/assets/planet-neptune.svg"
+import { useAppDispatch } from "@shared/Hooks/store-hooks"
 import {
   earthColor,
   jupiterColor,
@@ -22,8 +21,10 @@ import {
   saturnColor,
   uranusColor,
   venusColor
-} from "../../../shared/Hooks/useSetCssVars"
-import useOnPlanetChange from "../../../shared/Hooks/useOnPlanetChange"
+} from "@shared/Hooks/useSetCssVars"
+import useOnPlanetChange from "@shared/Hooks/useOnPlanetChange"
+import { planetTypes } from "../types"
+import { setPointedPlanet } from "../model"
 
 export const Header = () => {
   const dispatch = useAppDispatch()

@@ -7,7 +7,7 @@ import { NeptuneAssets } from "../assets/neptune"
 import { SaturnAssets } from "../assets/saturn"
 import { UranusAssets } from "../assets/uranus"
 import { VenusAssets } from "../assets/venus"
-import { planetAssets } from "./types"
+import { planetAssets } from "../types"
 
 const useGetCurPlanetAssets = () => {
 

@@ -1,6 +1,6 @@
 import styled from "styled-components"
-import { SolarSystem } from "../../widgets/SolarSystem"
-//TODO use alies
+import { SolarSystem } from "@widgets/SolarSystem"
+
 const MainPage = () => {
 
   return <MainPageLayout>

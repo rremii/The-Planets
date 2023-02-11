@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { viewMode } from "./types"
+import { viewMode } from "../types"
 
 
 interface initialStateType {
@@ -27,4 +27,4 @@ const ViewModeSlice = createSlice({
   }
 })
 export const { setViewMode, setIsSwitching } = ViewModeSlice.actions
-export default ViewModeSlice.reducer
+export const ViewModeReducer = ViewModeSlice.reducer

@@ -1,7 +1,8 @@
-import { setPlanetSetting, setPlanetSwitching } from "../../widgets/Header/model/NavSlice"
 import { useAppDispatch, useTypedSelector } from "./store-hooks"
 import { useNavigate } from "react-router-dom"
 import { useLocation } from "react-router"
+import { NavModel } from "@widgets/Header"
+
 
 const useOnPlanetChange = () => {
   const dispatch = useAppDispatch()
@@ -15,19 +16,19 @@ const useOnPlanetChange = () => {
   const ChangePlanet = (path: string) => {
     if (isPlanetSwitching) return
     if (!pathname) {
-      dispatch(setPlanetSetting(true))
+      dispatch(NavModel.setPlanetSetting(true))
       navigate(path)
       setTimeout(() => {
-        dispatch(setPlanetSetting(false))
+        dispatch(NavModel.setPlanetSetting(false))
       }, 1450)
     }
     if (pathname) {
-      dispatch(setPlanetSwitching(true))
+      dispatch(NavModel.setPlanetSwitching(true))
       setTimeout(() => {
         navigate(path)
       }, 1300)
       setTimeout(() => {
-        dispatch(setPlanetSwitching(false))
+        dispatch(NavModel.setPlanetSwitching(false))
       }, 2900)
     }
   }
