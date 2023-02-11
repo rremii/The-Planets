@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { withProviders } from "./providers"
 import { Routing } from "../pages"
 import "./styles/style.scss"
-import { Header } from "../widgets/Header"
+import { Header } from "@widgets/Header"
 
 function App() {
 
@@ -23,7 +23,7 @@ const Layout = styled.div`
   width: 100vw;
   height: 100vh;
   max-height: min-content;
-
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   position: relative;

@@ -179,14 +179,14 @@ const BurgerMenu = styled.div<{
   isActive: boolean
 }>`
   z-index: 15;
-  position: absolute;
-  top: 100%;
+  position: fixed;
+  top: 82px;
   padding: 0 24px;
   transition: .5s;
   transition-delay: .3s;
   left: ${({ isActive }) => isActive ? "0" : "100%"};
   width: 100vw;
-  height: calc(100vh - 83px);
+  height: calc(100vh - 82px);
   background-color: hsl(240, 67%, 8%);
   display: flex;
   flex-direction: column;
