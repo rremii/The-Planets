@@ -1,4 +1,4 @@
-import { PlanetDataType } from "../service/planet-service"
+import { PlanetDataType } from "../service/types"
 
 const Earth: PlanetDataType = {
   name: "earth",

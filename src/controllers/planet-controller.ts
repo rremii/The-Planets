@@ -1,5 +1,6 @@
-import PlanetService, { planetTypes } from "../service/planet-service"
+import PlanetService from "../service/planet-service"
 import { Request, Response } from "express"
+import { planetTypes } from "../service/types"
 
 interface IPlanetController {
   getPlanet(request: Request, response: Response): void
