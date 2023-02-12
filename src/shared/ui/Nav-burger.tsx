@@ -1,6 +1,6 @@
 import styled from "styled-components"
-import { FC } from "react"
 import { NavLink } from "react-router-dom"
+import React from "react"
 
 
 const ArrowRight = () => {
@@ -23,16 +23,15 @@ interface props {
   callback: () => void
 }
 
-export const NavBurger: FC<props> = ({ href, src, callback }) => {
+export const NavBurger = React.memo(({ href, src, callback }: props) => {
 
   return <NavBurgerLayout onClick={callback} to={href}>
     <img src={src} alt={src} />
     <span>{href}</span>
     <ArrowRight />
   </NavBurgerLayout>
-}
 
-
+})
 const NavBurgerLayout = styled(NavLink)`
   display: grid;
   grid-template-columns: min-content min-content 1fr min-content;

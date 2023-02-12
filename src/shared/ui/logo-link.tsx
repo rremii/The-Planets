@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { FC } from "react"
+import React from "react"
 import { NavLink } from "react-router-dom"
 
 
@@ -7,13 +7,13 @@ interface props {
   href: string
 }
 
-export const LogoLink: FC<props> = ({ href }) => {
+export const LogoLink = React.memo(({ href }: props) => {
   return <NavLink to={href}>
     <LogoLayout>
       the planets
     </LogoLayout>
   </NavLink>
-}
+})
 const LogoLayout = styled.div`
   font-size: 28px;
   font-family: 'Antonio', sans-serif;

@@ -2,7 +2,7 @@ import styled from "styled-components"
 import { Nav } from "@shared/ui/Nav"
 import { LogoLink } from "@shared/ui/logo-link"
 import { NavBurger } from "@shared/ui/Nav-burger"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import Mercury from "@shared/assets/planet-mercury.svg"
 import Venus from "@shared/assets/planet-venus.svg"
 import Earth from "@shared/assets/planet-earth.svg"
@@ -40,14 +40,14 @@ export const Header = () => {
   }, [pointedPlanet])
 
 
-  const OnPlanetChange = (e: any, path: string) => {
+  const OnPlanetChange = useCallback((e: any, path: string) => {
     e?.preventDefault()
     ChangePlanet(path)
-  }
+  }, [])
 
-  const OnPlanetChangeBurger = () => {
+  const OnPlanetChangeBurger = useCallback(() => {
     setBurgerActive(false)
-  }
+  }, [])
 
 
   return <HeaderLayout>

@@ -2,6 +2,7 @@ import { useAppDispatch, useTypedSelector } from "./store-hooks"
 import { useNavigate } from "react-router-dom"
 import { useLocation } from "react-router"
 import { NavModel } from "@widgets/Header"
+import { useCallback } from "react"
 
 
 const useOnPlanetChange = () => {
@@ -13,7 +14,7 @@ const useOnPlanetChange = () => {
   const isPlanetSwitching = useTypedSelector(state => state.Nav.isPlanetSwitching)
 
 
-  const ChangePlanet = (path: string) => {
+  const ChangePlanet = useCallback((path: string) => {
     if (isPlanetSwitching) return
     if (!pathname) {
       dispatch(NavModel.setPlanetSetting(true))
@@ -31,7 +32,7 @@ const useOnPlanetChange = () => {
         dispatch(NavModel.setPlanetSwitching(false))
       }, 2900)
     }
-  }
+  }, [])
 
 
   return [ChangePlanet]

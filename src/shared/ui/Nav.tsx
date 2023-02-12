@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { FC, SetStateAction } from "react"
+import React, { SetStateAction, useCallback } from "react"
 import { NavLink } from "react-router-dom"
 import { useLocation } from "react-router"
 import { planetTypes } from "@widgets/Header/types"
@@ -11,16 +11,16 @@ interface props {
   callback?: (e: any, path: string) => void
 }
 
-export const Nav: FC<props> = ({ href, color, OnHover, callback }) => {
+export const Nav = React.memo(({ href, color, OnHover, callback }: props) => {
 
   const location = useLocation()
 
-  const onMouseHover = () => {
+  const onMouseHover = useCallback(() => {
     OnHover(href)
-  }
-  const onMouseOut = () => {
+  }, [])
+  const onMouseOut = useCallback(() => {
     OnHover(null)
-  }
+  }, [])
 
 
   const pathname = location.pathname.slice(1)
@@ -31,7 +31,7 @@ export const Nav: FC<props> = ({ href, color, OnHover, callback }) => {
                     to={href}>
     <span>{href}</span>
   </NavLayout>
-}
+})
 const NavLayout = styled(NavLink)<{
   color: string
   isActive: boolean
